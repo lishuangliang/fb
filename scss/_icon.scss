@@ -1,0 +1,64 @@
+.icon-diamond {
+    display: inline-block;
+    width: px(38);
+    height: px(34);
+    vertical-align: middle;
+    background: url("../images/diamond.png") no-repeat;
+    background-size: 100% auto;
+    &.s-min {
+        width: px(24);
+        height: px(22);
+    }
+}
+
+.icon-bubble {
+    display: inline-block;
+    width: px(54);
+    height: px(62);
+    vertical-align: middle;
+    background: url("../images/icons/praise.png") no-repeat;
+    background-size: px(54 * 12) auto;
+    &.s-min {
+        width: px(34);
+        height: px(40);
+        background-size: px(34 * 12) auto;
+        @for $i from 1 through 12 {
+            &.bubble-#{$i} {
+                background-position: px(($i - 1) * -34) 0;
+            }
+        }
+    }
+    @for $i from 1 through 12 {
+        &.bubble-#{$i} {
+            background-position: px(($i - 1) * -54) 0;
+        }
+    }
+}
+
+.icon-level {
+    display: inline-block;
+    width: px(65);
+    height: px(32);
+    vertical-align: middle;
+    background: url("../images/icons/level.png") no-repeat;
+    background-size: px(1020) auto;
+
+    @for $i from 1 through 200 {
+        &.level-#{$i} {
+            $j: $i;
+            $x: 0;
+            $y: 0;
+            @if $j % 15 == 0 {
+                $x: -68 * 14;
+                $y: -34 * (floor($j / 15) - 1);
+            } @else {
+                $x: -68 * ($j % 15 - 1);
+                $y: -34 * floor($j / 15);
+            }
+
+            background-position: px($x) px($y);
+        }
+    }
+}
+
+.icon-level.level-0{background-position:px(-340) px(-442)}

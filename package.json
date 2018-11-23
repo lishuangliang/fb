@@ -1,0 +1,29 @@
+{
+  "name": "live",
+  "version": "1.0.0",
+  "description": "分贝直播 for webapp",
+  "main": "index.html",
+  "scripts": {
+    "build": "gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://fenbei.f3322.net:8001/git/wenchao/live.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-es2015-loose-rollup": "^7.0.0",
+    "blueimp-md5": "^2.6.0",
+    "compass": "git+https://github.com/TOP-Chao/compass.git",
+    "gulp": "gulpjs/gulp#4.0",
+    "iscroll": "^5.2.0",
+    "islider.js": "^2.2.0",
+    "requirejs": "^2.3.2",
+    "vconsole": "^2.5.1",
+    "video.js": "^5.12.6",
+    "videojs-contrib-hls": "^3.6.13",
+    "vue": "^2.1.3",
+    "vue-router": "^2.1.0"
+  }
+}

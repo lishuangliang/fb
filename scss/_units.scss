@@ -1,0 +1,273 @@
+.u-poster {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: center no-repeat;
+    background-size: cover;
+    &.s-blur {
+        @include prefixer(filter, blur(10px));
+    }
+    &.s-black {
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .8);
+        }
+    }
+}
+
+.u-emoji {
+    display: inline-block;
+    margin: 0 3px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.u-page {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    background-color: #efefef;
+    @include transition(transform .3s linear);
+    > .scroller {
+        position: relative;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+    }
+    &.slide-down-leave,
+    &.slide-down-leave-active,
+    &.slide-up-enter-active,
+    &.slide-left-leave-active,
+    &.slide-right-enter-active {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        z-index: 3;
+        max-width: 10rem;
+        margin-left: -5rem;
+    }
+    &.slide-left-leave-active,
+    &.slide-down-leave-active {
+        z-index: 4;
+    }
+    &.slide-left-leave-active,
+    &.slide-right-enter {
+        visibility: visible;
+        @include transform(translate3d(100%, 0, 0));
+    }
+    &.slide-down-leave-active,
+    &.slide-up-enter {
+        visibility: visible;
+        @include transform(translate3d(0, 100%, 0));
+    }
+}
+
+.u-loading {
+    z-index: 1;
+    display: block;
+    width: px(100);
+    height: px(100);
+    background: url("../images/loading_02.png") no-repeat;
+    background-size: px(100) auto;
+    @include center-translate();
+    @include animation(fx-loading .6s step-start infinite);
+}
+
+.u-dialog {
+    position: relative;
+    z-index: 100;
+    .dialog-wrapper {
+        position: fixed;
+        top: 50%;
+        left: 0;
+        z-index: 1001;
+        width: 100%;
+        -webkit-user-select: none;
+        @include transition(.2s .1s);
+        @include transform(translate(0, -50%) scale(1));
+    }
+    .dialog-mask {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .63);
+        @include transition(opacity .3s linear);
+    }
+}
+
+.u-dialog-toast,
+.u-dialog-indicator {
+    @include transition(opacity .3s linear);
+    &.fade-enter,
+    &.fade-leave-active {
+        opacity: 1;
+    }
+    .dialog-wrapper {
+        text-align: center;
+        @include parent-status('.fade-enter') {
+            opacity: 0;
+        }
+        @include parent-status('.fade-leave-active') {
+            opacity: 0;
+        }
+    }
+    .dialog-mask {
+        background-color: rgba(0, 0, 0, 0);
+    }
+}
+
+.u-indicator {
+    display: inline-block;
+    padding: px(40);
+    background-color: rgba(0, 0, 0, .75);
+    border-radius: px(10);
+    .indicator-spin {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .indicator-snake {
+        height: px(64);
+        width: px(64);
+        border: 4px solid rgb(204, 204, 204);
+        border-right-color: transparent;
+        border-radius: px(40);
+        @include animation(fx-rotate 0.8s infinite linear);
+    }
+    .indicator-text {
+        display: block;
+        margin-top: px(20);
+        text-align: center;
+        line-height: 1;
+        font-size: px(32);
+        color: #fff;
+        @include nowrap();
+    }
+}
+
+.u-toast {
+    display: inline-block;
+    max-width: rem(468);
+    padding: px(36) px(46);
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, .75);
+    border-radius: 4px;
+    &.s-failure,
+    &.s-success {
+        width: px(260);
+        height: px(100);
+        padding: px(160) 0 0;
+        background-repeat: no-repeat;
+        background-position: center px(70);
+        border-radius: 6px;
+        .toast-text {
+            line-height: 1;
+        }
+    }
+    &.s-success {
+        background-image: url("../images/icons/success.png");
+        background-size: px(90) auto;
+    }
+    &.s-failure {
+        background-image: url("../images/icons/failure.png");
+        background-size: px(52) auto;
+    }
+    .toast-text {
+        line-height: px(48);
+        font-size: px(32);
+        color: #e6e6e6;
+        @include word-wrap();
+    }
+}
+
+.u-dialog-alert {
+    &.bounce-enter,
+    &.bounce-leave-active {
+        opacity: 1;
+    }
+    .dialog-wrapper {
+        text-align: center;
+        @include parent-status('.bounce-enter') {
+            opacity: 0;
+            @include transform(translate(0, -50%) scale(.7));
+        }
+        @include parent-status('.bounce-leave-active') {
+            opacity: 0;
+            @include transform(translate(0, -50%) scale(.9));
+        }
+    }
+}
+
+.u-alert {
+    width: 92%;
+    max-width: 9.2rem;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    .content {
+        padding: px(32);
+        text-align: center;
+        font-size: px(32);
+        color: #333;
+        .alert-text {
+            line-height: px(60);
+            @include word-wrap();
+            p {
+                margin: 0;
+            }
+        }
+    }
+    .button {
+        @include clearfix();
+        a {
+            display: block;
+            height: px(98);
+            text-align: center;
+            line-height: px(98);
+            font-size: px(32);
+            color: $base;
+            @include border(1px null null, solid, #ddd, true);
+            @include parent-status('.s-btn-2') {
+                width: 50%;
+                float: left;
+                & + a {
+                    margin-left: -1px;
+                    @include border(null null null 1px, solid, #ddd, true);
+                }
+            }
+        }
+    }
+}
+
+@include keyframes(fx-rotate) {
+    0% {
+        @include transform(rotate(0deg));
+    }
+    100% {
+        @include transform(rotate(360deg));
+    }
+}
+
+@include keyframes(fx-loading) {
+    0% {
+        background-position: 0 0;
+    }
+    33.333333% {
+        background-position: 0 px(-100);
+    }
+    66.666666% {
+        background-position: 0 px(-200);
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
